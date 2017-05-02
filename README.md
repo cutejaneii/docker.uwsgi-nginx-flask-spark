@@ -13,4 +13,10 @@ Base on  **[tiangolo/uwsgi-nginx:python2.7](https://github.com/tiangolo/uwsgi-ng
 
 To run it:
 
-> docker run -d -p 8899:80 -v {folder}:/app cutejaneii/docker.uwsgi.nginx-flask-spark
+> docker run -d -p 8899:80 --name api -v {folder}:/app cutejaneii/docker.uwsgi.nginx-flask-spark
+
+### Important! ###
+
+DO NOT FORGET TO MAP HOST FOLDER WHEN BUILD A CONTAINER, SINCE THIS IMAGE DO NOT HAVE ANY API CODE IN
+IT.
+
