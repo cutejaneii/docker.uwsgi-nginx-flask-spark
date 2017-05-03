@@ -14,7 +14,6 @@ RUN \
   pip install wget && \
   wget https://downloads.lightbend.com/scala/2.12.0/scala-2.12.0.tgz && \
   wget http://d3kbcqa49mib13.cloudfront.net/spark-2.0.2-bin-hadoop2.6.tgz && \
-  wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz && \
   wget --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-linux-x64.tar.gz
 
 # unzip tgz files and move to /usr/local/
@@ -23,8 +22,6 @@ RUN \
   mv scala-2.12.0 /usr/local/scala && \ 
   tar xvf spark-2.0.2-bin-hadoop2.6.tgz && \
   mv spark-2.0.2-bin-hadoop2.6 /usr/local/spark && \  
-  tar xvf jdk-8u131-linux-x64.tar.gz && \
-  mv jdk1.8.0_131 /usr/local/jdk && \ 
   tar xvf jre-8u131-linux-x64.tar.gz && \
   mv jre1.8.0_131 /usr/local/jre
 
@@ -37,12 +34,10 @@ RUN \
 # Environment variables
 ENV SPARK_HOME=/usr/local/spark \
     JAVA_HOME=/usr/local/jdk \
-    PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/python:/usr/local/spark:/usr/local/spark/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin \
+    PATH=$PATH:$SPARK_HOME:$SPARK_HOME/bin:$SPARK_HOME/python:/usr/local/spark:/usr/local/spark/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/bin \
     JRE_HOME=/usr/local/jdk/jre \
     CLASSPATH=$CLASSPATH:.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
     
-ENV PATH=$PATH:$SPARK_HOME/bin/PYTHON
-
 # copy nginx setting
 COPY nginx.conf /etc/nginx/conf.d/
 
