@@ -17,6 +17,4 @@ To run it:
 
 ### Important! ###
 
-DO NOT FORGET TO MAP HOST FOLDER WHEN BUILD A CONTAINER, SINCE THIS IMAGE DO NOT HAVE ANY API CODE IN
-IT.
-
+Remeber to map a host folder when building a container. 
